@@ -33,6 +33,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
       // Position is important. New Game must be the second menu, as its position determines the way
       // this menu is resolved.
       choices.pushObject({
+        grow: 2,
         key: 'new',
         icon: 'save',
         inputable: true,
