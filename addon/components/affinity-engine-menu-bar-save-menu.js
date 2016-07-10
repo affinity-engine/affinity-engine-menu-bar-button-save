@@ -2,51 +2,75 @@ import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-menu-bar-save-menu';
 import { registrant } from 'affinity-engine';
 import { ModalMixin } from 'affinity-engine-menu-bar';
+import { BusPublisherMixin } from 'ember-message-bus';
 
-const { Component } = Ember;
+const {
+  Component,
+  computed,
+  get,
+  set
+} = Ember;
 
-export default Component.extend(ModalMixin, {
+export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
 
   options: {
-    columns: 2,
-    iconFamily: 'fa-icon'
+    menuColumns: 2,
+    iconFamily: 'fa-icon',
+    keys: {
+      accept: ['Enter']
+    }
   },
 
   saveStateManager: registrant('saveStateManager'),
 
-  choices: computed('saves.[]', {
-    get() {
-      return get(this, 'saveStateManager.saves').then((saves) => {
-        const choices = Ember.A();
+  init(...args) {
+    this._super(...args);
 
-        // Position is important. New Game must be the second menu, as its position determines the way
-        // this menu is resolved.
-        choices.pushObject({
-          icon: 'save',
-          inputable: true,
-          text: 'affinity-engine.menu.save.new'
-        });
+    get(this, 'saveStateManager.saves').then((saves) => {
+      const choices = Ember.A();
 
-        saves.forEach((save) => {
-          if (!get(save, 'isAutosave')) {
-            choices.pushObject({
-              key: 'save',
-              object: save,
-              text: get(save, 'fullName'),
-              classNames: ['ae-menu-option-pair-major']
-            });
-            choices.pushObject({
-              key: 'delete',
-              object: save,
-              icon: 'remove',
-              classNames: ['ae-menu-option-pair-minor']
-            });
-          }
-        });
-
-        return choices;
+      // Position is important. New Game must be the second menu, as its position determines the way
+      // this menu is resolved.
+      choices.pushObject({
+        key: 'new',
+        icon: 'save',
+        inputable: true,
+        text: 'affinity-engine.menu.save.new'
       });
+
+      saves.forEach((save) => {
+        if (!get(save, 'isAutosave')) {
+          choices.pushObject({
+            key: 'save',
+            object: save,
+            text: get(save, 'fullName'),
+            classNames: ['ae-menu-option-pair-major']
+          });
+          choices.pushObject({
+            key: 'delete',
+            object: save,
+            icon: 'remove',
+            classNames: ['ae-menu-option-pair-minor']
+          });
+        }
+      });
+
+      set(this, 'choices', choices);
+    });
+  },
+
+  actions: {
+    onChoice(choice) {
+      const engineId = get(this, 'engineId');
+
+      switch (get(choice, 'key')) {
+        case 'new': this.publish(`ae:${engineId}:shouldCreateSave`, get(choice, 'value')); break;
+        case 'save': this.publish(`ae:${engineId}:shouldUpdateSave`, get(choice, 'object')); break;
+        case 'delete': this.publish(`ae:${engineId}:shouldDeleteSave`, get(choice, 'object')); break;
+      }
+
+      this.closeModal();
     }
-  })
+  }
 });

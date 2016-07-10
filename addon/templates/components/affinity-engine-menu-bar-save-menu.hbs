@@ -1,5 +1,8 @@
-{{affinity-engine-menu-bar-menu
-  choices=choices
-  options=options
-  onChoice=(action "onChoice")
-}}
+{{#if choices}}
+  {{affinity-engine-menu-bar-menu
+    choices=choices
+    engineId=engineId
+    options=options
+    onChoice=(action "onChoice")
+  }}
+{{/if}}
