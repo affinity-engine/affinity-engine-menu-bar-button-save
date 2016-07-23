@@ -1,24 +1,33 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { deepStub } from 'affinity-engine';
+
+const {
+  getProperties,
+  setProperties
+} = Ember;
 
 moduleForComponent('affinity-engine-menu-bar-save', 'Integration | Component | affinity engine menu bar save', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+const configurationTiers = [
+  'config.attrs.menuBar.save',
+  'config.attrs.menuBar',
+  'config.attrs.globals'
+];
 
-  this.render(hbs`{{affinity-engine-menu-bar-save}}`);
+configurationTiers.forEach((priority) => {
+  test(`icon and iconFamily are assigned by priority ${priority}`, function(assert) {
+    assert.expect(1);
 
-  assert.equal(this.$().text().trim(), '');
+    const stub = deepStub(priority, { iconFamily: 'fa-icon', icon: 'cloud-upload' });
 
-  // Template block usage:
-  this.render(hbs`
-    {{#affinity-engine-menu-bar-save}}
-      template block text
-    {{/affinity-engine-menu-bar-save}}
-  `);
+    setProperties(this, getProperties(stub, 'config'));
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    this.render(hbs`{{affinity-engine-menu-bar-save config=config}}`);
+
+    assert.ok(this.$('i').hasClass('fa-cloud-upload'), 'icon correct');
+  });
 });
