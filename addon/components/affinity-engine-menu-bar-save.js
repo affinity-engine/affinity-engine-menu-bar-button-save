@@ -8,5 +8,6 @@ const {
 
 export default Component.extend(ModalToggleMixin, {
   layout,
-  componentName: 'affinity-engine-menu-bar-save-menu'
+  componentName: 'affinity-engine-menu-bar-save-menu',
+  hook: 'affinity_engine_menu_bar_save'
 });

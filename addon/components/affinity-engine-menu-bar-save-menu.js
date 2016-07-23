@@ -6,13 +6,13 @@ import { BusPublisherMixin } from 'ember-message-bus';
 
 const {
   Component,
-  computed,
   get,
   set
 } = Ember;
 
 export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
+  hook: 'affinity_engine_menu_bar_save_menu',
 
   options: {
     menuColumns: 2,
@@ -22,23 +22,22 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
     }
   },
 
-  saveStateManager: registrant('saveStateManager'),
+  saveStateManager: registrant('affinity-engine/save-state-manager'),
 
   init(...args) {
     this._super(...args);
 
     get(this, 'saveStateManager.saves').then((saves) => {
-      const choices = Ember.A();
-
-      // Position is important. New Game must be the second menu, as its position determines the way
-      // this menu is resolved.
-      choices.pushObject({
-        grow: 2,
+      const choices = Ember.A([{
         key: 'new',
         icon: 'save',
         inputable: true,
         text: 'affinity-engine.menu.save.new'
-      });
+      }, {
+        class: 'ae-menu-close',
+        icon: 'arrow-right',
+        text: 'affinity-engine.menu.cancel'
+      }]);
 
       saves.forEach((save) => {
         if (!get(save, 'isAutosave')) {
