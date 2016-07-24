@@ -1,28 +1,43 @@
 import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-menu-bar-save-menu';
-import { registrant } from 'affinity-engine';
+import { classNamesConfigurable, configurable, deepConfigurable, registrant } from 'affinity-engine';
 import { ModalMixin } from 'affinity-engine-menu-bar';
 import { BusPublisherMixin } from 'ember-message-bus';
+import multiton from 'ember-multiton-service';
 
 const {
   Component,
+  assign,
+  computed,
   get,
+  getProperties,
   set
 } = Ember;
+
+const configurationTiers = [
+  'config.attrs.menuBar.save',
+  'config.attrs.menuBar.menu',
+  'config.attrs.menuBar',
+  'config.attrs.globals'
+];
 
 export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_save_menu',
 
-  options: {
-    menuColumns: 2,
-    iconFamily: 'fa-icon',
-    keys: {
-      accept: ['Enter']
-    }
-  },
-
   saveStateManager: registrant('affinity-engine/save-state-manager'),
+  config: multiton('affinity-engine/config', 'engineId'),
+
+  menuColumns: configurable(configurationTiers, 'menuColumns'),
+  customClassNames: classNamesConfigurable(configurationTiers, 'classNames'),
+  iconFamily: configurable(configurationTiers, 'iconFamily'),
+  keys: deepConfigurable(configurationTiers, 'keys'),
+
+  options: computed('menuColumns', 'customClassNames', 'iconFamily', 'icon', 'keys', {
+    get() {
+      return assign({ classNames: get(this, 'customClassNames') }, getProperties(this, 'menuColumns', 'iconFamily', 'icon', 'keys'));
+    }
+  }),
 
   init(...args) {
     this._super(...args);
@@ -30,13 +45,10 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
     get(this, 'saveStateManager.saves').then((saves) => {
       const choices = Ember.A([{
         key: 'new',
+        grow: 2,
         icon: 'save',
         inputable: true,
         text: 'affinity-engine.menu.save.new'
-      }, {
-        class: 'ae-menu-close',
-        icon: 'arrow-right',
-        text: 'affinity-engine.menu.cancel'
       }]);
 
       saves.forEach((save) => {
@@ -44,14 +56,13 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
           choices.pushObject({
             key: 'save',
             object: save,
-            text: get(save, 'fullName'),
-            classNames: ['ae-menu-option-pair-major']
+            text: get(save, 'fullName')
           });
           choices.pushObject({
             key: 'delete',
             object: save,
             icon: 'remove',
-            classNames: ['ae-menu-option-pair-minor']
+            classNames: ['ae-menu-option-shrink']
           });
         }
       });
@@ -61,6 +72,10 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
   },
 
   actions: {
+    closeModal() {
+      this.closeModal();
+    },
+
     onChoice(choice) {
       const engineId = get(this, 'engineId');
 
