@@ -1,7 +1,7 @@
 {
   "name": "affinity-engine-menu-bar-save",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A save menu for the Affinity Engine menu-bar",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "",
+  "repository": "https://github.com/affinity-engine/affinity-engine-menu-bar-save",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -48,7 +48,9 @@
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "affinity-engine",
+    "affinity-engine menu-bar"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6",
