@@ -9,9 +9,9 @@ const {
 } = Ember;
 
 const configurationTiers = [
-  'config.attrs.menuBar.save',
-  'config.attrs.menuBar',
-  'config.attrs.globals'
+  'config.attrs.component.menuBar.button.save',
+  'config.attrs.component.menuBar',
+  'config.attrs'
 ];
 
 export default Component.extend(ModalToggleMixin, {

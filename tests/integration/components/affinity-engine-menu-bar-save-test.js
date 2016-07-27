@@ -13,9 +13,9 @@ moduleForComponent('affinity-engine-menu-bar-save', 'Integration | Component | a
 });
 
 const configurationTiers = [
-  'config.attrs.menuBar.save',
-  'config.attrs.menuBar',
-  'config.attrs.globals'
+  'config.attrs.component.menuBar.button.save',
+  'config.attrs.component.menuBar',
+  'config.attrs'
 ];
 
 configurationTiers.forEach((priority) => {
