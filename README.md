@@ -1,4 +1,4 @@
-# Affinity-engine-menu-bar-save
+# affinity-engine-menu-bar-button-save
 
 This README outlines the details of collaborating on this Ember addon.
 

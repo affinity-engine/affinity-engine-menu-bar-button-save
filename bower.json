@@ -1,5 +1,5 @@
 {
-  "name": "affinity-engine-menu-bar-save",
+  "name": "affinity-engine-menu-bar-button-save",
   "dependencies": {
     "ember": "~2.6.0",
     "ember-cli-shims": "0.1.1",

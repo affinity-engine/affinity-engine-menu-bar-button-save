@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import layout from '../templates/components/affinity-engine-menu-bar-save-menu';
+import layout from '../templates/components/affinity-engine-menu-bar-button-save-menu';
 import { classNamesConfigurable, configurable, deepConfigurable, registrant } from 'affinity-engine';
 import { ModalMixin } from 'affinity-engine-menu-bar';
 import { BusPublisherMixin } from 'ember-message-bus';

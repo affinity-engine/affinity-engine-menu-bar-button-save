@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'affinity-engine-menu-bar-save'
+  name: 'affinity-engine-menu-bar-button-save'
 };

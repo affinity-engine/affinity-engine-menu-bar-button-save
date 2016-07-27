@@ -8,7 +8,7 @@ const {
   setProperties
 } = Ember;
 
-moduleForComponent('affinity-engine-menu-bar-save', 'Integration | Component | affinity engine menu bar save', {
+moduleForComponent('affinity-engine-menu-bar-button-save', 'Integration | Component | affinity engine menu bar save', {
   integration: true
 });
 
@@ -26,7 +26,7 @@ configurationTiers.forEach((priority) => {
 
     setProperties(this, getProperties(stub, 'config'));
 
-    this.render(hbs`{{affinity-engine-menu-bar-save config=config}}`);
+    this.render(hbs`{{affinity-engine-menu-bar-button-save config=config}}`);
 
     assert.ok(this.$('i').hasClass('fa-cloud-upload'), 'icon correct');
   });

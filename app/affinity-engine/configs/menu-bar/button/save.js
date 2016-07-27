@@ -1,1 +1,1 @@
-export { default } from 'affinity-engine-menu-bar-save/affinity-engine/configs/menu-bar/button/save';
+export { default } from 'affinity-engine-menu-bar-button-save/affinity-engine/configs/menu-bar/button/save';

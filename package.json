@@ -1,5 +1,5 @@
 {
-  "name": "affinity-engine-menu-bar-save",
+  "name": "affinity-engine-menu-bar-button-save",
   "version": "0.0.0",
   "description": "A save menu for the Affinity Engine menu-bar",
   "directories": {
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:each"
   },
-  "repository": "https://github.com/affinity-engine/affinity-engine-menu-bar-save",
+  "repository": "https://github.com/affinity-engine/affinity-engine-menu-bar-button-save",
   "engines": {
     "node": ">= 0.10.0"
   },
