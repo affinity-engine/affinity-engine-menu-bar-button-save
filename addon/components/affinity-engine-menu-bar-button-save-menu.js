@@ -56,7 +56,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
           choices.pushObject({
             key: 'save',
             object: save,
-            text: get(save, 'fullName')
+            text: get(save, 'fullNameAndDate')
           });
           choices.pushObject({
             key: 'delete',
