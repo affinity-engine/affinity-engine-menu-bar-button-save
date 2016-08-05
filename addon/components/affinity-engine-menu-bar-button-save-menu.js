@@ -48,7 +48,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
         grow: 2,
         icon: 'save',
         inputable: true,
-        text: 'affinity-engine.menu.save.new'
+        text: 'affinity-engine.menu-bar.buttons.save.new'
       }]);
 
       saves.forEach((save) => {

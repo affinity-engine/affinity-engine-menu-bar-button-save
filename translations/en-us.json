@@ -1,0 +1,12 @@
+{
+  "affinity-engine": {
+    "menu-bar": {
+      "buttons": {
+        "save": {
+          "header": "Save Menu",
+          "new": "New Save"
+        }
+      }
+    }
+  }
+}
