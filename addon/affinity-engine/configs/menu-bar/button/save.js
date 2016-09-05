@@ -3,8 +3,9 @@ export default {
     menuBar: {
       button: {
         save: {
-          menuColumns: '2',
-          icon: 'upload'
+          header: 'affinity-engine.menu-bar.buttons.save.header',
+          icon: 'upload',
+          menuColumns: '2'
         }
       }
     }

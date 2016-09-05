@@ -19,6 +19,7 @@
   "license": "MIT",
   "devDependencies": {
     "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
+    "affinity-engine-animator-velocity": "git+https://github.com/affinity-engine/affinity-engine-animator-velocity.git",
     "affinity-engine-menu-bar": "git+https://github.com/affinity-engine/affinity-engine-menu-bar.git",
     "affinity-engine-rewindable-save-adapter": "git+https://github.com/affinity-engine/affinity-engine-rewindable-save-adapter.git",
     "affinity-engine-styles-bundle": "git+https://github.com/affinity-engine/affinity-engine-styles-bundle.git",
