@@ -1,3 +1,9 @@
+@import "ember-flex-menu/ember-flex-menu";
 @import "affinity-engine";
 @import "affinity-engine/menu-bar";
-@import "affinity-engine/styles-bundle";
+@import "affinity-engine/base";
+@import "affinity-engine/styles/block";
+@import "affinity-engine/styles/coastal";
+@import "affinity-engine/styles/full";
+@import "affinity-engine/styles/paper";
+@import "affinity-engine/styles/transparent";

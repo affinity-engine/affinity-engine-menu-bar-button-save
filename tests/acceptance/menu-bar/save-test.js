@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../../tests/helpers/module-for-acceptance';
 import { $hook, hook } from 'ember-hook';
@@ -5,6 +6,11 @@ import { $hook, hook } from 'ember-hook';
 moduleForAcceptance('Acceptance | menu bar/save', {
   beforeEach() {
     localStorage.clear();
+    Ember.$.Velocity.mock = true;
+  },
+
+  afterEach() {
+    Ember.$.Velocity.mock = false;
   }
 });
 
