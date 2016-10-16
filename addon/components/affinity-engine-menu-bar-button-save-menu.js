@@ -22,7 +22,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_save_menu',
 
-  saveStateManager: registrant('affinity-engine/save-state-manager'),
+  dataManager: registrant('affinity-engine/data-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
 
   acceptKeys: configurable(configurationTiers, 'keys.accept'),
@@ -42,7 +42,7 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
   init(...args) {
     this._super(...args);
 
-    get(this, 'saveStateManager.saves').then((saves) => {
+    get(this, 'dataManager.saves').then((saves) => {
       const choices = Ember.A([{
         key: 'new',
         grow: 2,
