@@ -2,7 +2,6 @@ import Ember from 'ember';
 import layout from '../templates/components/affinity-engine-menu-bar-button-save-menu';
 import { classNamesConfigurable, configurable, registrant } from 'affinity-engine';
 import { ModalMixin } from 'affinity-engine-menu-bar';
-import { BusPublisherMixin } from 'ember-message-bus';
 import multiton from 'ember-multiton-service';
 
 const {
@@ -18,12 +17,13 @@ const configurationTiers = [
   'config.attrs'
 ];
 
-export default Component.extend(BusPublisherMixin, ModalMixin, {
+export default Component.extend(ModalMixin, {
   layout,
   hook: 'affinity_engine_menu_bar_save_menu',
 
   dataManager: registrant('affinity-engine/data-manager'),
   config: multiton('affinity-engine/config', 'engineId'),
+  eBus: multiton('message-bus', 'engineId'),
 
   acceptKeys: configurable(configurationTiers, 'keys.accept'),
   animationLibrary: configurable(configurationTiers, 'animationLibrary'),
@@ -77,12 +77,12 @@ export default Component.extend(BusPublisherMixin, ModalMixin, {
     },
 
     onChoice(choice) {
-      const engineId = get(this, 'engineId');
+      const eBus = get(this, 'eBus');
 
       switch (get(choice, 'key')) {
-        case 'new': this.publish(`ae:${engineId}:shouldCreateSave`, get(choice, 'value')); break;
-        case 'save': this.publish(`ae:${engineId}:shouldUpdateSave`, get(choice, 'object')); break;
-        case 'delete': this.publish(`ae:${engineId}:shouldDeleteSave`, get(choice, 'object')); break;
+        case 'new': eBus.publish('shouldCreateSave', get(choice, 'value')); break;
+        case 'save': eBus.publish('shouldUpdateSave', get(choice, 'object')); break;
+        case 'delete': eBus.publish('shouldDeleteSave', get(choice, 'object')); break;
       }
 
       set(this, 'willTransitionOut', true);
