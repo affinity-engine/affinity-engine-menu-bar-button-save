@@ -14,7 +14,7 @@ const configurationTiers = [
   'config.attrs.component.menuBar.button.save',
   'config.attrs.component.menuBar.menu',
   'config.attrs.component.menuBar',
-  'config.attrs'
+  'config.attrs.global'
 ];
 
 export default Component.extend(ModalMixin, {
