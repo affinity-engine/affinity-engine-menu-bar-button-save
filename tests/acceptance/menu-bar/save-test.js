@@ -17,6 +17,8 @@ moduleForAcceptance('Acceptance | menu bar/save', {
 test('visiting /menu-bar/save', function(assert) {
   assert.expect(11);
 
+  const done = assert.async();
+
   let buttonText = '';
 
   visit('/').then(() => {
@@ -65,5 +67,7 @@ test('visiting /menu-bar/save', function(assert) {
     return click(hook('affinity_engine_menu_bar_save'));
   }).then(() => {
     assert.equal($hook('ember_flex_menu_option').length, 1, 'delete successful');
+
+    done();
   });
 });
