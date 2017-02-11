@@ -1,6 +1,6 @@
 {
   "name": "affinity-engine-menu-bar-button-save",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A save menu for the Affinity Engine menu-bar",
   "keywords": [
     "ember-addon",
@@ -25,12 +25,12 @@
     "ember-cli-htmlbars": "^1.0.10"
   },
   "devDependencies": {
-    "affinity-engine": "git+https://github.com/affinity-engine/affinity-engine.git",
-    "affinity-engine-animator-velocity": "git+https://github.com/affinity-engine/affinity-engine-animator-velocity.git",
-    "affinity-engine-data-manager-rewindable-lokijs": "git+https://github.com/affinity-engine/affinity-engine-data-manager-rewindable-lokijs.git",
-    "affinity-engine-menu-bar": "git+https://github.com/affinity-engine/affinity-engine-menu-bar.git",
-    "affinity-engine-styles-bundle": "git+https://github.com/affinity-engine/affinity-engine-styles-bundle.git",
-    "affinity-engine-translator-ember-intl": "git+https://github.com/affinity-engine/affinity-engine-translator-ember-intl.git",
+    "affinity-engine": "^0.1.0",
+    "affinity-engine-animator-velocity": "^0.1.0",
+    "affinity-engine-data-manager-rewindable-lokijs": "^0.1.0",
+    "affinity-engine-menu-bar": "^0.1.0",
+    "affinity-engine-styles-bundle": "^0.1.0",
+    "affinity-engine-translator-ember-intl": "^0.1.0",
     "babel-eslint": "^6.0.4",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^2.4.1",
@@ -59,7 +59,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://www.affinityengine.org/components/menu-bar/buttons/save",
+    "demoURL": "http://www.affinityengine.org/#/components/menu-bar/buttons/save",
     "after": [
       "affinity-engine"
     ]
