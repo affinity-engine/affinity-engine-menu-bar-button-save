@@ -1,11 +1,18 @@
 export default {
+  priority: 2,
   component: {
     menuBar: {
       button: {
         save: {
-          header: 'affinity-engine.menu-bar.buttons.save.header',
-          icon: 'upload',
-          menuColumns: '2'
+          attrs: {
+            header: 'affinity-engine.menu-bar.buttons.save.header',
+            icon: {
+              type: 'upload'
+            },
+            menu: {
+              columns: '2'
+            }
+          }
         }
       }
     }
