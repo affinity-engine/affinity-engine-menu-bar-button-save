@@ -1,6 +1,6 @@
 {
   "name": "affinity-engine-menu-bar-button-save",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "A save menu for the Affinity Engine menu-bar",
   "keywords": [
     "ember-addon",

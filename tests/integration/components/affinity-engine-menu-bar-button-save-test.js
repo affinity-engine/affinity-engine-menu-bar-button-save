@@ -15,7 +15,7 @@ moduleForComponent('affinity-engine-menu-bar-button-save', 'Integration | Compon
 const configurationTiers = [
   'config.attrs.component.menuBar.button.save.attrs',
   'config.attrs.component.menuBar.attrs',
-  'config.attrs.every.attrs'
+  'config.attrs.all.attrs'
 ];
 
 configurationTiers.forEach((priority) => {
